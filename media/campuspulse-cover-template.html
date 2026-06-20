@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CampusPulse Cover</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 1600px;
+        height: 900px;
+        overflow: hidden;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: #f8fafc;
+        background: #061419;
+      }
+
+      .cover {
+        position: relative;
+        width: 1600px;
+        height: 900px;
+        background:
+          linear-gradient(90deg, rgba(4, 16, 23, 0.9) 0%, rgba(4, 16, 23, 0.62) 42%, rgba(4, 16, 23, 0.14) 100%),
+          linear-gradient(0deg, rgba(4, 16, 23, 0.66) 0%, rgba(4, 16, 23, 0.05) 50%),
+          url("campuspulse-cover-background-ai.png") center / cover no-repeat;
+      }
+
+      .copy {
+        position: absolute;
+        top: 108px;
+        left: 112px;
+        width: 690px;
+      }
+
+      .mark {
+        display: inline-flex;
+        align-items: center;
+        gap: 18px;
+        margin-bottom: 48px;
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+
+      .mark span {
+        display: grid;
+        place-items: center;
+        width: 72px;
+        height: 72px;
+        border: 2px solid rgba(255, 255, 255, 0.72);
+        border-radius: 18px;
+        background: rgba(8, 47, 73, 0.72);
+        box-shadow: 0 22px 70px rgba(6, 182, 212, 0.25);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 96px;
+        line-height: 0.92;
+        font-weight: 860;
+        letter-spacing: 0;
+      }
+
+      .tagline {
+        margin: 38px 0 0;
+        font-size: 34px;
+        line-height: 1.28;
+        color: #d6f6ff;
+        max-width: 640px;
+      }
+
+      .pill-row {
+        display: flex;
+        gap: 16px;
+        margin-top: 48px;
+        flex-wrap: wrap;
+      }
+
+      .pill {
+        padding: 15px 22px;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        border-radius: 999px;
+        background: rgba(10, 37, 48, 0.72);
+        color: #e0fbff;
+        font-size: 22px;
+        font-weight: 700;
+        backdrop-filter: blur(14px);
+      }
+
+      .stats {
+        position: absolute;
+        right: 82px;
+        bottom: 72px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        width: 690px;
+      }
+
+      .stat {
+        min-height: 132px;
+        padding: 24px;
+        border: 1px solid rgba(215, 246, 255, 0.24);
+        border-radius: 18px;
+        background: rgba(3, 18, 25, 0.58);
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+        backdrop-filter: blur(18px);
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 42px;
+        line-height: 1;
+        color: #8ff2ff;
+      }
+
+      .stat span {
+        display: block;
+        margin-top: 14px;
+        font-size: 18px;
+        line-height: 1.22;
+        color: #d7f6ff;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="cover" aria-label="CampusPulse Devpost cover">
+      <section class="copy">
+        <div class="mark"><span>CP</span> CampusPulse</div>
+        <h1>Campus energy intelligence</h1>
+        <p class="tagline">Python analytics that find wasted power before it becomes invisible.</p>
+        <div class="pill-row">
+          <div class="pill">Python backend</div>
+          <div class="pill">Anomaly detection</div>
+          <div class="pill">Action ranking</div>
+        </div>
+      </section>
+
+      <section class="stats" aria-label="Project highlights">
+        <div class="stat">
+          <strong>6</strong>
+          <span>campus buildings analyzed</span>
+        </div>
+        <div class="stat">
+          <strong>24h</strong>
+          <span>energy demand patterns</span>
+        </div>
+        <div class="stat">
+          <strong>CSV</strong>
+          <span>judge-friendly data export</span>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
