@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CampusPulse</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/">
+        <span aria-hidden="true">CP</span>
+        CampusPulse
+      </a>
+      <nav aria-label="Dashboard sections">
+        <a href="#signals">Signals</a>
+        <a href="#recommendations">Actions</a>
+        <a href="#data">Data</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Campus energy intelligence for student builders</p>
+          <h1>Find wasted power before it becomes invisible.</h1>
+          <p>
+            CampusPulse turns raw occupancy and energy readings into anomaly alerts,
+            savings estimates, and action plans for university buildings.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-action" href="#recommendations">Review actions</a>
+            <button id="refresh-data" type="button">Regenerate data</button>
+          </div>
+        </div>
+        <aside class="hero-panel" aria-label="System status">
+          <div>
+            <span class="pulse"></span>
+            <p id="updated-at">Loading</p>
+          </div>
+          <strong>Python analytics live</strong>
+          <p>Forecasting, anomaly ranking, and impact estimates are served by the local Python API.</p>
+        </aside>
+      </section>
+
+      <section class="metric-grid" id="metric-grid" aria-label="Campus energy metrics"></section>
+
+      <section class="dashboard-band" id="signals">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Signals</p>
+            <h2>Buildings ranked by demand and drift</h2>
+          </div>
+          <div class="filters" id="building-filters" aria-label="Building filters"></div>
+        </div>
+
+        <div class="dashboard-grid">
+          <article class="panel wide">
+            <div class="panel-heading">
+              <h3>Hourly campus energy load</h3>
+              <span>Aggregated kWh by sensor hour</span>
+            </div>
+            <div class="chart" id="energy-chart" aria-label="Hourly energy bar chart"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-heading">
+              <h3>Anomaly queue</h3>
+              <span>Highest-severity readings</span>
+            </div>
+            <ul class="anomaly-list" id="anomaly-list"></ul>
+          </article>
+        </div>
+
+        <article class="panel table-panel">
+          <div class="panel-heading">
+            <h3>Building performance</h3>
+            <span>Energy intensity highlights inefficient spaces</span>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Building</th>
+                  <th>Avg energy</th>
+                  <th>Avg occupancy</th>
+                  <th>kWh/person</th>
+                  <th>24h trend</th>
+                </tr>
+              </thead>
+              <tbody id="building-table"></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <section class="dashboard-band action-band" id="recommendations">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Actions</p>
+            <h2>Recommended interventions</h2>
+          </div>
+          <p class="section-note">
+            Ranked by estimated avoidable kWh from low-occupancy, high-energy periods.
+          </p>
+        </div>
+        <div class="recommendation-list" id="recommendation-list"></div>
+      </section>
+
+      <section class="dashboard-band" id="data">
+        <article class="panel table-panel">
+          <div class="panel-heading">
+            <h3 id="raw-title">Recent sensor readings</h3>
+            <a href="/api/readings.csv">Download CSV</a>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Building</th>
+                  <th>Occupancy</th>
+                  <th>kWh</th>
+                  <th>Event</th>
+                </tr>
+              </thead>
+              <tbody id="raw-sample"></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <p>Built for Devpost hackathons by Isabel Zhang, UCI.</p>
+      <p>Python standard library backend, generated campus sensor data, no external runtime dependencies.</p>
+    </footer>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
