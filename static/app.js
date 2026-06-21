@@ -4,6 +4,17 @@ const state = {
 };
 
 const money = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
+const shortDateTime = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "numeric",
+  hour: "numeric",
+  hour12: true,
+});
+const shortTime = new Intl.DateTimeFormat("en-US", {
+  hour: "numeric",
+  minute: "2-digit",
+  hour12: true,
+});
 
 function qs(selector) {
   return document.querySelector(selector);
@@ -23,6 +34,14 @@ async function loadAnalytics(refresh = false) {
 function pct(value) {
   const sign = value > 0 ? "+" : "";
   return `${sign}${value}%`;
+}
+
+function formatReadingTime(timestamp) {
+  return shortDateTime.format(new Date(timestamp));
+}
+
+function formatUpdatedTime(timestamp) {
+  return shortTime.format(new Date(timestamp));
 }
 
 function renderMetricCards(summary) {
@@ -110,12 +129,11 @@ function renderChart(hourly) {
 function renderAnomalies(anomalies) {
   qs("#anomaly-list").innerHTML = anomalies
     .map((item) => {
-      const time = new Date(item.timestamp);
       return `
         <li>
           <div>
             <strong>${item.building}</strong>
-            <span>${time.toLocaleString([], { month: "short", day: "numeric", hour: "numeric" })}</span>
+            <span>${formatReadingTime(item.timestamp)}</span>
           </div>
           <p>${item.reason}</p>
           <em>${item.energy_kwh} kWh / ${item.occupancy} people</em>
@@ -160,7 +178,7 @@ function renderRawSample(rows) {
     .map(
       (row) => `
         <tr>
-          <td>${new Date(row.timestamp).toLocaleString([], { month: "short", day: "numeric", hour: "numeric" })}</td>
+          <td>${formatReadingTime(row.timestamp)}</td>
           <td>${row.building}</td>
           <td>${row.occupancy}</td>
           <td>${row.energy_kwh}</td>
@@ -195,10 +213,7 @@ function render() {
   const data = state.analytics;
   if (!data) return;
 
-  qs("#updated-at").textContent = `Updated ${new Date(data.generated_at).toLocaleTimeString([], {
-    hour: "numeric",
-    minute: "2-digit",
-  })}`;
+  qs("#updated-at").textContent = `Updated ${formatUpdatedTime(data.generated_at)}`;
   renderMetricCards(data.summary);
   renderBuildingFilters(data.buildings);
   renderBuildingTable(data.buildings);
